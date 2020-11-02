@@ -812,7 +812,7 @@ export default class MaterialTable extends React.Component {
     }
   }
 
-  renderLinearLoader = (position) => (
+  renderLinearProgress = (position) => (
     <div style={{ position: "relative", width: "100%" }}>
       <div
         style={{
@@ -1044,6 +1044,11 @@ export default class MaterialTable extends React.Component {
               onGroupRemoved={this.onGroupRemoved}
             />
           )}
+          {(this.state.isLoading || props.isLoading) &&
+            (props.options.loadingType === "linear" || props.options.loadingType === "both") &&
+            (props.options.loadingPosition === "top" || props.options.loadingPosition === "both")
+            && this.renderLinearProgress("top")
+          }
           <ScrollBar double={props.options.doubleHorizontalScroll}>
             <Droppable droppableId="headers" direction="horizontal">
               {(provided, snapshot) => {
@@ -1127,8 +1132,9 @@ export default class MaterialTable extends React.Component {
             </Droppable>
           </ScrollBar>
           {(this.state.isLoading || props.isLoading) &&
-            (props.options.loadingType === "linear" || props.options.loadingType === "both")
-            && this.renderLinearLoader("bottom")
+            (props.options.loadingType === "linear" || props.options.loadingType === "both") &&
+            (props.options.loadingPosition === "bottom" || props.options.loadingPosition === "both")
+            && this.renderLinearProgress("bottom")
           }
           {props.options.paginationPosition === "bottom" ||
             props.options.paginationPosition === "both"

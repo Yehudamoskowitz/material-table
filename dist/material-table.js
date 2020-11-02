@@ -474,7 +474,7 @@ var MaterialTable = /*#__PURE__*/function (_React$Component) {
 
       _this.setState(_this.dataManager.getRenderState());
     });
-    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "renderLinearLoader", function (position) {
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "renderLinearProgress", function (position) {
       return /*#__PURE__*/React.createElement("div", {
         style: {
           position: "relative",
@@ -974,7 +974,7 @@ var MaterialTable = /*#__PURE__*/function (_React$Component) {
         }),
         onSortChanged: this.onChangeGroupOrder,
         onGroupRemoved: this.onGroupRemoved
-      }), /*#__PURE__*/React.createElement(ScrollBar, {
+      }), (this.state.isLoading || props.isLoading) && (props.options.loadingType === "linear" || props.options.loadingType === "both") && (props.options.loadingPosition === "top" || props.options.loadingPosition === "both") && this.renderLinearProgress("top"), /*#__PURE__*/React.createElement(ScrollBar, {
         "double": props.options.doubleHorizontalScroll
       }, /*#__PURE__*/React.createElement(_reactBeautifulDnd.Droppable, {
         droppableId: "headers",
@@ -1023,7 +1023,7 @@ var MaterialTable = /*#__PURE__*/function (_React$Component) {
             background: "white"
           }
         }, table)) : null), provided.placeholder);
-      })), (this.state.isLoading || props.isLoading) && (props.options.loadingType === "linear" || props.options.loadingType === "both") && this.renderLinearLoader("bottom"), props.options.paginationPosition === "bottom" || props.options.paginationPosition === "both" ? this.renderFooter() : null, (this.state.isLoading || props.isLoading) && props.options.loadingType === "overlay" && /*#__PURE__*/React.createElement("div", {
+      })), (this.state.isLoading || props.isLoading) && (props.options.loadingType === "linear" || props.options.loadingType === "both") && (props.options.loadingPosition === "bottom" || props.options.loadingPosition === "both") && this.renderLinearProgress("bottom"), props.options.paginationPosition === "bottom" || props.options.paginationPosition === "both" ? this.renderFooter() : null, (this.state.isLoading || props.isLoading) && props.options.loadingType === "overlay" && /*#__PURE__*/React.createElement("div", {
         style: {
           position: "absolute",
           top: 0,
