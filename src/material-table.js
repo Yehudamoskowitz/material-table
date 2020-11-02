@@ -607,8 +607,8 @@ export default class MaterialTable extends React.Component {
               typeof error === "object"
                 ? error.message
                 : error !== undefined
-                ? error
-                : localization.error,
+                  ? error
+                  : localization.error,
             errorCause: "query",
           };
           this.setState({
@@ -736,9 +736,9 @@ export default class MaterialTable extends React.Component {
       const isOutsidePageNumbers = this.isOutsidePageNumbers(props);
       const currentPage = isOutsidePageNumbers
         ? Math.min(
-            props.page,
-            Math.floor(props.totalCount / this.state.pageSize)
-          )
+          props.page,
+          Math.floor(props.totalCount / this.state.pageSize)
+        )
         : this.state.currentPage;
       const totalCount = isOutsidePageNumbers
         ? props.totalCount
@@ -787,15 +787,15 @@ export default class MaterialTable extends React.Component {
                       }
                     />
                   ) : (
-                    <MTableSteppedPagination
-                      {...subProps}
-                      icons={props.icons}
-                      localization={localization}
-                      showFirstLastPageButtons={
-                        props.options.showFirstLastPageButtons
-                      }
-                    />
-                  )
+                      <MTableSteppedPagination
+                        {...subProps}
+                        icons={props.icons}
+                        localization={localization}
+                        showFirstLastPageButtons={
+                          props.options.showFirstLastPageButtons
+                        }
+                      />
+                    )
                 }
                 labelDisplayedRows={(row) =>
                   localization.labelDisplayedRows
@@ -812,12 +812,28 @@ export default class MaterialTable extends React.Component {
     }
   }
 
+  renderLinearLoader = (position) => (
+    <div style={{ position: "relative", width: "100%" }}>
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          height: "100%",
+          width: "100%",
+        }}
+      >
+        <LinearProgress />
+      </div>
+    </div>
+  )
+
   renderTable = (props) => (
     <Table
       style={{
         tableLayout:
           props.options.fixedColumns &&
-          (props.options.fixedColumns.left || props.options.fixedColumns.right)
+            (props.options.fixedColumns.left || props.options.fixedColumns.right)
             ? "fixed"
             : props.options.tableLayout,
       }}
@@ -838,10 +854,10 @@ export default class MaterialTable extends React.Component {
             props.parentChildData
               ? this.state.treefiedDataLength
               : this.state.columns.filter(
-                  (col) => col.tableData.groupOrder > -1
-                ).length > 0
-              ? this.state.groupedDataLength
-              : this.state.data.length
+                (col) => col.tableData.groupOrder > -1
+              ).length > 0
+                ? this.state.groupedDataLength
+                : this.state.data.length
           }
           hasDetailPanel={!!props.detailPanel}
           detailPanelColumnAlignment={props.options.detailPanelColumnAlignment}
@@ -966,7 +982,7 @@ export default class MaterialTable extends React.Component {
           style={{ position: "relative", ...props.style }}
         >
           {props.options.paginationPosition === "top" ||
-          props.options.paginationPosition === "both"
+            props.options.paginationPosition === "both"
             ? this.renderFooter()
             : null}
           {props.options.toolbar && (
@@ -976,8 +992,8 @@ export default class MaterialTable extends React.Component {
               selectedRows={
                 this.state.selectedCount > 0
                   ? this.state.originalData.filter((a) => {
-                      return a.tableData.checked;
-                    })
+                    return a.tableData.checked;
+                  })
                   : []
               }
               columns={this.state.columns}
@@ -1043,66 +1059,66 @@ export default class MaterialTable extends React.Component {
                       }}
                     >
                       {this.state.width &&
-                      props.options.fixedColumns &&
-                      props.options.fixedColumns.right ? (
-                        <div
-                          style={{
-                            width: this.getColumnsWidth(
-                              props,
-                              -1 * props.options.fixedColumns.right
-                            ),
-                            position: "absolute",
-                            top: 0,
-                            right: 0,
-                            boxShadow: "-2px 0px 15px rgba(125,147,178,.25)",
-                            overflowX: "hidden",
-                            zIndex: 11,
-                          }}
-                        >
+                        props.options.fixedColumns &&
+                        props.options.fixedColumns.right ? (
                           <div
                             style={{
-                              width: this.state.width,
-                              background: "white",
-                              transform: `translateX(calc(${this.getColumnsWidth(
+                              width: this.getColumnsWidth(
                                 props,
                                 -1 * props.options.fixedColumns.right
-                              )} - 100%))`,
+                              ),
+                              position: "absolute",
+                              top: 0,
+                              right: 0,
+                              boxShadow: "-2px 0px 15px rgba(125,147,178,.25)",
+                              overflowX: "hidden",
+                              zIndex: 11,
                             }}
                           >
-                            {table}
+                            <div
+                              style={{
+                                width: this.state.width,
+                                background: "white",
+                                transform: `translateX(calc(${this.getColumnsWidth(
+                                  props,
+                                  -1 * props.options.fixedColumns.right
+                                )} - 100%))`,
+                              }}
+                            >
+                              {table}
+                            </div>
                           </div>
-                        </div>
-                      ) : null}
+                        ) : null}
 
                       <div>{table}</div>
 
                       {this.state.width &&
-                      props.options.fixedColumns &&
-                      props.options.fixedColumns.left ? (
-                        <div
-                          style={{
-                            width: this.getColumnsWidth(
-                              props,
-                              props.options.fixedColumns.left
-                            ),
-                            position: "absolute",
-                            top: 0,
-                            left: 0,
-                            boxShadow: "2px 0px 15px rgba(125,147,178,.25)",
-                            overflowX: "hidden",
-                            zIndex: 11,
-                          }}
-                        >
+                        props.options.fixedColumns &&
+                        props.options.fixedColumns.left ? (
                           <div
                             style={{
-                              width: this.state.width,
-                              background: "white",
+                              width: this.getColumnsWidth(
+                                props,
+                                props.options.fixedColumns.left
+                              ),
+                              position: "absolute",
+                              top: 0,
+                              left: 0,
+                              boxShadow: "2px 0px 15px rgba(125,147,178,.25)",
+                              overflowX: "hidden",
+                              zIndex: 11,
                             }}
                           >
-                            {table}
+                            <div
+                              style={{
+                                width: this.state.width,
+                                background: "white",
+                              }}
+                            >
+                              {table}
+                            </div>
                           </div>
-                        </div>
-                      ) : null}
+                        ) : null}
                     </div>
                     {provided.placeholder}
                   </div>
@@ -1111,23 +1127,11 @@ export default class MaterialTable extends React.Component {
             </Droppable>
           </ScrollBar>
           {(this.state.isLoading || props.isLoading) &&
-            props.options.loadingType === "linear" && (
-              <div style={{ position: "relative", width: "100%" }}>
-                <div
-                  style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    height: "100%",
-                    width: "100%",
-                  }}
-                >
-                  <LinearProgress />
-                </div>
-              </div>
-            )}
+            (props.options.loadingType === "linear" || props.options.loadingType === "both")
+            && this.renderLinearLoader("bottom")
+          }
           {props.options.paginationPosition === "bottom" ||
-          props.options.paginationPosition === "both"
+            props.options.paginationPosition === "both"
             ? this.renderFooter()
             : null}
 
